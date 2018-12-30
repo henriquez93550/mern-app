@@ -12,7 +12,7 @@ class ShoppingList extends Component {
         this.props.getItems();
       }
     //   sends information from button to the itemActions
-      onDeleteClick = id => {
+    onDeleteClick = id => {
         this.props.deleteItem(id);
       };
     
@@ -25,15 +25,16 @@ class ShoppingList extends Component {
    
             <ListGroup>
           <TransitionGroup className="shopping-list">
-            {items.map(({ id, name }) => (
-              <CSSTransition key={id} timeout={500} classNames="fade">
+          {/* _id is used because the data is coming from mongoDB */}
+          {items.map(({ _id, name }) => (
+              <CSSTransition key={_id} timeout={500} classNames="fade"> 
                             <ListGroupItem>
                                 {/* &times; this is a X button */}
                                 <Button
                                     className="remove-btn"
                                     color="danger"
                                     size="sm"
-                                    onClick={this.onDeleteClick.bind(this, id)}
+                                    onClick={this.onDeleteClick.bind(this, _id)}
                                 >
                                 &times;
                                 </Button>
